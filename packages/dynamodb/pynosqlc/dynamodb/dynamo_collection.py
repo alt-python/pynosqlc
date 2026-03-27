@@ -31,8 +31,8 @@ class DynamoCollection(Collection):
 
     async def _get(self, key: str) -> dict | None:
         """Retrieve a document by its ``_pk``."""
-        table = self._client._resource.Table(self._name)
         await self._client.ensure_table(self._name)
+        table = await self._client._resource.Table(self._name)
 
         resp = await table.get_item(Key={"_pk": key})
         item = resp.get("Item")
@@ -42,22 +42,22 @@ class DynamoCollection(Collection):
 
     async def _store(self, key: str, doc: dict) -> None:
         """Upsert a document, setting ``_pk = key``."""
-        table = self._client._resource.Table(self._name)
         await self._client.ensure_table(self._name)
+        table = await self._client._resource.Table(self._name)
 
         await table.put_item(Item={**doc, "_pk": key})
 
     async def _delete(self, key: str) -> None:
         """Delete the document at ``_pk = key``."""
-        table = self._client._resource.Table(self._name)
         await self._client.ensure_table(self._name)
+        table = await self._client._resource.Table(self._name)
 
         await table.delete_item(Key={"_pk": key})
 
     async def _insert(self, doc: dict) -> str:
         """Insert a document with a generated UUID ``_pk``; return the id."""
-        table = self._client._resource.Table(self._name)
         await self._client.ensure_table(self._name)
+        table = await self._client._resource.Table(self._name)
 
         id_ = str(uuid.uuid4())
         await table.put_item(Item={**doc, "_pk": id_})
@@ -69,8 +69,8 @@ class DynamoCollection(Collection):
         Only provided fields are updated; others are preserved.
         ``_pk`` is never patched even if present in *patch*.
         """
-        table = self._client._resource.Table(self._name)
         await self._client.ensure_table(self._name)
+        table = await self._client._resource.Table(self._name)
 
         # Build SET expression: skip _pk to avoid overwriting the partition key.
         fields = [(k, v) for k, v in patch.items() if k != "_pk"]
@@ -104,8 +104,8 @@ class DynamoCollection(Collection):
         table scan with automatic pagination, strips ``_pk`` from each item,
         and wraps results in a :class:`~pynosqlc.core.Cursor`.
         """
-        table = self._client._resource.Table(self._name)
         await self._client.ensure_table(self._name)
+        table = await self._client._resource.Table(self._name)
 
         filter_expr, attr_names, attr_values = DynamoFilterTranslator.translate(ast)
 

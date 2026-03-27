@@ -76,7 +76,7 @@ class DynamoClient(Client):
         if name in self._table_cache:
             return
 
-        table = self._resource.Table(name)
+        table = await self._resource.Table(name)
 
         # Check whether the table exists.
         try:
@@ -106,5 +106,6 @@ class DynamoClient(Client):
             # Race: another coroutine already created the table — that's fine.
 
         # Wait for the table to become ACTIVE.
-        await self._resource.Table(name).wait_until_exists()
+        waiter_table = await self._resource.Table(name)
+        await waiter_table.wait_until_exists()
         self._table_cache.add(name)
