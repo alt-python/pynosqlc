@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v4
+        with:
+          python-version: "3.12"
+      - run: uv sync --frozen
+      - name: Run offline tests
+        run: |
+          uv run pytest \
+            packages/core/tests/ \
+            packages/memory/tests/ \
+            packages/mongodb/tests/test_mongo_filter_translator.py \
+            packages/dynamodb/tests/test_dynamo_filter_translator.py \
+            packages/cosmosdb/tests/test_cosmos_filter_translator.py \
+            -v
