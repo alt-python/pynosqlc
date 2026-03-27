@@ -7,6 +7,7 @@ dependencies = [
     "pynosqlc-core",
     "pynosqlc-memory",
     "pynosqlc-mongodb",
+    "pynosqlc-dynamodb",
 ]
 
 [tool.uv.workspace]
@@ -14,12 +15,14 @@ members = [
     "packages/core",
     "packages/memory",
     "packages/mongodb",
+    "packages/dynamodb",
 ]
 
 [tool.uv.sources]
 pynosqlc-core = { workspace = true }
 pynosqlc-memory = { workspace = true }
 pynosqlc-mongodb = { workspace = true }
+pynosqlc-dynamodb = { workspace = true }
 
 [dependency-groups]
 dev = [
