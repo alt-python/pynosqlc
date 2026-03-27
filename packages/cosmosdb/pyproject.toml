@@ -8,6 +8,19 @@ dependencies = [
     "pynosqlc-core",
     "azure-cosmos>=4.7",
 ]
+authors = [{name = "pynosqlc Contributors"}]
+license = {text = "MIT"}
+keywords = ["nosql", "database", "async", "cosmosdb", "azure", "driver"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: AsyncIO",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Database",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
 
 [build-system]
 requires = ["hatchling"]
