@@ -1,0 +1,26 @@
+[project]
+name = "pynosqlc"
+version = "0.1.0"
+description = "pynosqlc monorepo — JDBC-inspired unified async NoSQL access for Python"
+requires-python = ">=3.12"
+dependencies = [
+    "pynosqlc-core",
+    "pynosqlc-memory",
+]
+
+[tool.uv.workspace]
+members = [
+    "packages/core",
+    "packages/memory",
+]
+
+[tool.uv.sources]
+pynosqlc-core = { workspace = true }
+pynosqlc-memory = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=5.0",
+]
