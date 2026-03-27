@@ -22,11 +22,10 @@ from pynosqlc.core import DriverManager, Filter
 import pynosqlc.memory  # auto-registers MemoryDriver
 
 async def main():
-    async with DriverManager.get_client('pynosqlc:memory:') as client:
-        col = client.collection('users')
+    async with await DriverManager.get_client('pynosqlc:memory:') as client:
+        col = client.get_collection('users')
         await col.store('u1', {'name': 'Alice', 'age': 30})
-        f = Filter.where('age').gt(25)
-        async for doc in await col.find(f):
+        async for doc in await col.find(Filter.where('age').gt(25).build()):
             print(doc)
 
 asyncio.run(main())
@@ -38,7 +37,7 @@ asyncio.run(main())
 import pynosqlc.mongodb  # auto-registers MongoDriver
 
 # Replace the URL — everything else stays the same:
-async with DriverManager.get_client('pynosqlc:mongodb://localhost:27017/mydb') as client:
+async with await DriverManager.get_client('pynosqlc:mongodb://localhost:27017/mydb') as client:
     ...
 ```
 

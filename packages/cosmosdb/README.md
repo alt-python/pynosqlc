@@ -26,13 +26,13 @@ from pynosqlc.core import DriverManager, Filter
 import pynosqlc.cosmosdb  # auto-registers CosmosDriver
 
 async def main():
-    async with DriverManager.get_client(
+    async with await DriverManager.get_client(
         'pynosqlc:cosmosdb:https://myaccount.documents.azure.com:443/',
         properties={'key': '<your-account-key>', 'db_id': 'mydb'},
     ) as client:
-        col = client.collection('orders')
+        col = client.get_collection('orders')
         await col.store('o1', {'item': 'widget', 'qty': 5})
-        f = Filter.where('qty').gt(0)
+        f = Filter.where('qty').gt(0).build()
         async for doc in await col.find(f):
             print(doc)
 
@@ -45,7 +45,7 @@ Use `local` as the target — the driver connects to `http://localhost:8081` wit
 the well-known emulator master key automatically:
 
 ```python
-async with DriverManager.get_client(
+async with await DriverManager.get_client(
     'pynosqlc:cosmosdb:local',
     properties={'db_id': 'mydb'},
 ) as client:

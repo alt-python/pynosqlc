@@ -25,10 +25,10 @@ from pynosqlc.core import DriverManager, Filter
 import pynosqlc.dynamodb  # auto-registers DynamoDriver
 
 async def main():
-    async with DriverManager.get_client('pynosqlc:dynamodb:us-east-1') as client:
-        col = client.collection('orders')
+    async with await DriverManager.get_client('pynosqlc:dynamodb:us-east-1') as client:
+        col = client.get_collection('orders')
         await col.store('o1', {'item': 'widget', 'qty': 5})
-        f = Filter.where('qty').gt(0)
+        f = Filter.where('qty').gt(0).build()
         async for doc in await col.find(f):
             print(doc)
 
@@ -40,7 +40,7 @@ asyncio.run(main())
 Pass `endpoint` in the properties dict to point at a local instance:
 
 ```python
-async with DriverManager.get_client(
+async with await DriverManager.get_client(
     'pynosqlc:dynamodb:us-east-1',
     properties={'endpoint': 'http://localhost:8000'},
 ) as client:
