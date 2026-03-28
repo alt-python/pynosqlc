@@ -3,7 +3,7 @@
 pynosqlc is a JDBC-inspired unified async NoSQL access layer for Python.
 The central idea: switch databases by changing a URL string — your application
 code is identical whether you are talking to an in-memory store, MongoDB,
-DynamoDB, or Cosmos DB.
+DynamoDB, Cosmos DB, Redis, or Cassandra.
 
 This tutorial takes you from a fresh virtual environment through storing,
 querying, and switching backends. All code blocks run verbatim against the
@@ -27,7 +27,7 @@ tutorial:
 ```bash
 python -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
-pip install pynosqlc-core pynosqlc-memory
+pip install alt-python-pynosqlc-core alt-python-pynosqlc-memory
 ```
 
 Create a file called `demo.py` — you will fill it in step by step below.
@@ -277,17 +277,19 @@ The database name is embedded in the URL path (`/mydb`). Install the driver
 with:
 
 ```bash
-pip install pynosqlc-mongodb
+pip install alt-python-pynosqlc-mongodb
 ```
 
 Other available drivers:
 
 | URL prefix | Package | Backend |
 |---|---|---|
-| `pynosqlc:memory:` | `pynosqlc-memory` | In-memory (testing/CI) |
-| `pynosqlc:mongodb://...` | `pynosqlc-mongodb` | MongoDB (pymongo async) |
-| `pynosqlc:dynamodb:` | `pynosqlc-dynamodb` | AWS DynamoDB (aioboto3) |
-| `pynosqlc:cosmosdb:` | `pynosqlc-cosmosdb` | Azure Cosmos DB (azure-cosmos aio) |
+| `pynosqlc:memory:` | `alt-python-pynosqlc-memory` | In-memory (testing/CI) |
+| `pynosqlc:mongodb://...` | `alt-python-pynosqlc-mongodb` | MongoDB (pymongo async) |
+| `pynosqlc:dynamodb:` | `alt-python-pynosqlc-dynamodb` | AWS DynamoDB (aioboto3) |
+| `pynosqlc:cosmosdb:` | `alt-python-pynosqlc-cosmosdb` | Azure Cosmos DB (azure-cosmos aio) |
+| `pynosqlc:redis://...` | `alt-python-pynosqlc-redis` | Redis 7 (redis-py async) |
+| `pynosqlc:cassandra:<host>:<port>/<keyspace>` | `alt-python-pynosqlc-cassandra` | Cassandra 4 (cassandra-driver) |
 
 ---
 
@@ -308,4 +310,4 @@ Other available drivers:
 ### Next Steps
 
 - [`docs/api-reference.md`](api-reference.md) — full method signatures and return types for all `Collection`, `Cursor`, `Filter`, and `DriverManager` APIs
-- [`docs/driver-guide.md`](driver-guide.md) — connection properties, authentication, and driver-specific configuration for MongoDB, DynamoDB, and Cosmos DB
+- [`docs/driver-guide.md`](driver-guide.md) — connection properties, authentication, and driver-specific configuration for all six drivers (MongoDB, DynamoDB, Cosmos DB, Redis, Cassandra)

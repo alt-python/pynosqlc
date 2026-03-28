@@ -5,7 +5,7 @@ DynamoDB driver for [pynosqlc](https://github.com/alt-python/pynosqlc) — conne
 ## Install
 
 ```
-pip install pynosqlc-dynamodb
+pip install alt-python-pynosqlc-dynamodb
 ```
 
 ## Requirements

@@ -6,11 +6,13 @@ A JDBC-inspired unified async NoSQL access layer for Python — switch databases
 
 | Package | Description | Install |
 |---|---|---|
-| pynosqlc-core | ABCs, DriverManager, Filter, compliance suite | `pip install pynosqlc-core` |
-| pynosqlc-memory | Zero-dep in-memory driver (testing/CI) | `pip install pynosqlc-memory` |
-| pynosqlc-mongodb | MongoDB driver (pymongo AsyncMongoClient) | `pip install pynosqlc-mongodb` |
-| pynosqlc-dynamodb | DynamoDB driver (aioboto3) | `pip install pynosqlc-dynamodb` |
-| pynosqlc-cosmosdb | Azure Cosmos DB driver (azure-cosmos aio) | `pip install pynosqlc-cosmosdb` |
+| alt-python-pynosqlc-core | ABCs, DriverManager, Filter, compliance suite | `pip install alt-python-pynosqlc-core` |
+| alt-python-pynosqlc-memory | Zero-dep in-memory driver (testing/CI) | `pip install alt-python-pynosqlc-memory` |
+| alt-python-pynosqlc-mongodb | MongoDB driver (pymongo AsyncMongoClient) | `pip install alt-python-pynosqlc-mongodb` |
+| alt-python-pynosqlc-dynamodb | DynamoDB driver (aioboto3) | `pip install alt-python-pynosqlc-dynamodb` |
+| alt-python-pynosqlc-cosmosdb | Azure Cosmos DB driver (azure-cosmos aio) | `pip install alt-python-pynosqlc-cosmosdb` |
+| alt-python-pynosqlc-redis | Redis driver (redis-py async) | `pip install alt-python-pynosqlc-redis` |
+| alt-python-pynosqlc-cassandra | Cassandra driver (cassandra-driver, async-wrapped) | `pip install alt-python-pynosqlc-cassandra` |
 
 ## Quick Start
 
@@ -40,6 +42,17 @@ import pynosqlc.mongodb  # auto-registers MongoDriver
 async with await DriverManager.get_client('pynosqlc:mongodb://localhost:27017/mydb') as client:
     ...
 ```
+
+## All Drivers
+
+| URL | Package | Backend |
+|---|---|---|
+| `pynosqlc:memory:` | `alt-python-pynosqlc-memory` | In-memory (testing/CI) — zero dependencies |
+| `pynosqlc:mongodb://<host>:<port>/<db>` | `alt-python-pynosqlc-mongodb` | MongoDB (pymongo AsyncMongoClient) |
+| `pynosqlc:dynamodb:<region>` | `alt-python-pynosqlc-dynamodb` | AWS DynamoDB (aioboto3) |
+| `pynosqlc:cosmosdb:<endpoint>` | `alt-python-pynosqlc-cosmosdb` | Azure Cosmos DB (azure-cosmos aio) |
+| `pynosqlc:redis://<host>:<port>` | `alt-python-pynosqlc-redis` | Redis 7 (redis-py async) |
+| `pynosqlc:cassandra:<host>:<port>/<keyspace>` | `alt-python-pynosqlc-cassandra` | Cassandra 4 (cassandra-driver) |
 
 ## Filter Operators
 

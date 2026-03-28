@@ -1,19 +1,22 @@
 [project]
-name = "pynosqlc-redis"
-version = "0.1.0"
+name = "alt-python-pynosqlc-redis"
+version = "1.0.0"
 description = "Redis driver for pynosqlc"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "pynosqlc-core",
-    "pynosqlc-memory",
+    "alt-python-pynosqlc-core",
+    "alt-python-pynosqlc-memory",
     "redis>=5.0",
 ]
-authors = [{name = "pynosqlc Contributors"}]
+authors = [
+    {name = "Craig Parravicini"},
+    {name = "Claude (Anthropic)"},
+]
 license = {text = "MIT"}
 keywords = ["nosql", "database", "async", "redis", "driver"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 5 - Production/Stable",
     "Framework :: AsyncIO",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
@@ -31,8 +34,8 @@ build-backend = "hatchling.build"
 packages = ["pynosqlc"]
 
 [tool.uv.sources]
-pynosqlc-core = { workspace = true }
-pynosqlc-memory = { workspace = true }
+alt-python-pynosqlc-core = { workspace = true }
+alt-python-pynosqlc-memory = { workspace = true }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

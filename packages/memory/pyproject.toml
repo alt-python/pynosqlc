@@ -1,17 +1,20 @@
 [project]
-name = "pynosqlc-memory"
-version = "0.1.0"
+name = "alt-python-pynosqlc-memory"
+version = "1.0.0"
 description = "In-memory driver for pynosqlc — zero-dependency dict-backed storage for testing"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "pynosqlc-core",
+    "alt-python-pynosqlc-core",
 ]
-authors = [{name = "pynosqlc Contributors"}]
+authors = [
+    {name = "Craig Parravicini"},
+    {name = "Claude (Anthropic)"},
+]
 license = {text = "MIT"}
 keywords = ["nosql", "database", "async", "memory", "testing"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 5 - Production/Stable",
     "Framework :: AsyncIO",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
@@ -29,7 +32,7 @@ build-backend = "hatchling.build"
 packages = ["pynosqlc"]
 
 [tool.uv.sources]
-pynosqlc-core = { workspace = true }
+alt-python-pynosqlc-core = { workspace = true }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

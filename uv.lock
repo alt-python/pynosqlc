@@ -4,14 +4,14 @@ requires-python = ">=3.12"
 
 [manifest]
 members = [
+    "alt-python-pynosqlc-cassandra",
+    "alt-python-pynosqlc-core",
+    "alt-python-pynosqlc-cosmosdb",
+    "alt-python-pynosqlc-dynamodb",
+    "alt-python-pynosqlc-memory",
+    "alt-python-pynosqlc-mongodb",
+    "alt-python-pynosqlc-redis",
     "pynosqlc",
-    "pynosqlc-cassandra",
-    "pynosqlc-core",
-    "pynosqlc-cosmosdb",
-    "pynosqlc-dynamodb",
-    "pynosqlc-memory",
-    "pynosqlc-mongodb",
-    "pynosqlc-redis",
 ]
 
 [[package]]
@@ -173,6 +173,101 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/61/62/06741b579156360248d1ec624842ad0edf697050bbaf7c3e46394e106ad1/aiosignal-1.4.0.tar.gz", hash = "sha256:f47eecd9468083c2029cc99945502cb7708b082c232f9aca65da147157b251c7", size = 25007, upload-time = "2025-07-03T22:54:43.528Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/fb/76/641ae371508676492379f16e2fa48f4e2c11741bd63c48be4b12a6b09cba/aiosignal-1.4.0-py3-none-any.whl", hash = "sha256:053243f8b92b990551949e63930a839ff0cf0b0ebbe0597b0f3fb19e1a0fe82e", size = 7490, upload-time = "2025-07-03T22:54:42.156Z" },
+]
+
+[[package]]
+name = "alt-python-pynosqlc-cassandra"
+version = "1.0.0"
+source = { editable = "packages/cassandra" }
+dependencies = [
+    { name = "alt-python-pynosqlc-core" },
+    { name = "alt-python-pynosqlc-memory" },
+    { name = "cassandra-driver" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "alt-python-pynosqlc-core", editable = "packages/core" },
+    { name = "alt-python-pynosqlc-memory", editable = "packages/memory" },
+    { name = "cassandra-driver", specifier = ">=3.29.1" },
+]
+
+[[package]]
+name = "alt-python-pynosqlc-core"
+version = "1.0.0"
+source = { editable = "packages/core" }
+
+[[package]]
+name = "alt-python-pynosqlc-cosmosdb"
+version = "1.0.0"
+source = { editable = "packages/cosmosdb" }
+dependencies = [
+    { name = "alt-python-pynosqlc-core" },
+    { name = "azure-cosmos" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "alt-python-pynosqlc-core", editable = "packages/core" },
+    { name = "azure-cosmos", specifier = ">=4.7" },
+]
+
+[[package]]
+name = "alt-python-pynosqlc-dynamodb"
+version = "1.0.0"
+source = { editable = "packages/dynamodb" }
+dependencies = [
+    { name = "aioboto3" },
+    { name = "alt-python-pynosqlc-core" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "aioboto3", specifier = ">=2.7" },
+    { name = "alt-python-pynosqlc-core", editable = "packages/core" },
+]
+
+[[package]]
+name = "alt-python-pynosqlc-memory"
+version = "1.0.0"
+source = { editable = "packages/memory" }
+dependencies = [
+    { name = "alt-python-pynosqlc-core" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "alt-python-pynosqlc-core", editable = "packages/core" }]
+
+[[package]]
+name = "alt-python-pynosqlc-mongodb"
+version = "1.0.0"
+source = { editable = "packages/mongodb" }
+dependencies = [
+    { name = "alt-python-pynosqlc-core" },
+    { name = "pymongo" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "alt-python-pynosqlc-core", editable = "packages/core" },
+    { name = "pymongo", specifier = ">=4.6" },
+]
+
+[[package]]
+name = "alt-python-pynosqlc-redis"
+version = "1.0.0"
+source = { editable = "packages/redis" }
+dependencies = [
+    { name = "alt-python-pynosqlc-core" },
+    { name = "alt-python-pynosqlc-memory" },
+    { name = "redis" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "alt-python-pynosqlc-core", editable = "packages/core" },
+    { name = "alt-python-pynosqlc-memory", editable = "packages/memory" },
+    { name = "redis", specifier = ">=5.0" },
 ]
 
 [[package]]
@@ -851,13 +946,13 @@ name = "pynosqlc"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "pynosqlc-cassandra" },
-    { name = "pynosqlc-core" },
-    { name = "pynosqlc-cosmosdb" },
-    { name = "pynosqlc-dynamodb" },
-    { name = "pynosqlc-memory" },
-    { name = "pynosqlc-mongodb" },
-    { name = "pynosqlc-redis" },
+    { name = "alt-python-pynosqlc-cassandra" },
+    { name = "alt-python-pynosqlc-core" },
+    { name = "alt-python-pynosqlc-cosmosdb" },
+    { name = "alt-python-pynosqlc-dynamodb" },
+    { name = "alt-python-pynosqlc-memory" },
+    { name = "alt-python-pynosqlc-mongodb" },
+    { name = "alt-python-pynosqlc-redis" },
 ]
 
 [package.dev-dependencies]
@@ -870,13 +965,13 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "pynosqlc-cassandra", editable = "packages/cassandra" },
-    { name = "pynosqlc-core", editable = "packages/core" },
-    { name = "pynosqlc-cosmosdb", editable = "packages/cosmosdb" },
-    { name = "pynosqlc-dynamodb", editable = "packages/dynamodb" },
-    { name = "pynosqlc-memory", editable = "packages/memory" },
-    { name = "pynosqlc-mongodb", editable = "packages/mongodb" },
-    { name = "pynosqlc-redis", editable = "packages/redis" },
+    { name = "alt-python-pynosqlc-cassandra", editable = "packages/cassandra" },
+    { name = "alt-python-pynosqlc-core", editable = "packages/core" },
+    { name = "alt-python-pynosqlc-cosmosdb", editable = "packages/cosmosdb" },
+    { name = "alt-python-pynosqlc-dynamodb", editable = "packages/dynamodb" },
+    { name = "alt-python-pynosqlc-memory", editable = "packages/memory" },
+    { name = "alt-python-pynosqlc-mongodb", editable = "packages/mongodb" },
+    { name = "alt-python-pynosqlc-redis", editable = "packages/redis" },
 ]
 
 [package.metadata.requires-dev]
@@ -885,101 +980,6 @@ dev = [
     { name = "pytest-asyncio", specifier = ">=0.24" },
     { name = "pytest-cov", specifier = ">=5.0" },
     { name = "pyyaml", specifier = ">=6.0.3" },
-]
-
-[[package]]
-name = "pynosqlc-cassandra"
-version = "0.1.0"
-source = { editable = "packages/cassandra" }
-dependencies = [
-    { name = "cassandra-driver" },
-    { name = "pynosqlc-core" },
-    { name = "pynosqlc-memory" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "cassandra-driver", specifier = ">=3.29.1" },
-    { name = "pynosqlc-core", editable = "packages/core" },
-    { name = "pynosqlc-memory", editable = "packages/memory" },
-]
-
-[[package]]
-name = "pynosqlc-core"
-version = "0.1.0"
-source = { editable = "packages/core" }
-
-[[package]]
-name = "pynosqlc-cosmosdb"
-version = "0.1.0"
-source = { editable = "packages/cosmosdb" }
-dependencies = [
-    { name = "azure-cosmos" },
-    { name = "pynosqlc-core" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "azure-cosmos", specifier = ">=4.7" },
-    { name = "pynosqlc-core", editable = "packages/core" },
-]
-
-[[package]]
-name = "pynosqlc-dynamodb"
-version = "0.1.0"
-source = { editable = "packages/dynamodb" }
-dependencies = [
-    { name = "aioboto3" },
-    { name = "pynosqlc-core" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "aioboto3", specifier = ">=2.7" },
-    { name = "pynosqlc-core", editable = "packages/core" },
-]
-
-[[package]]
-name = "pynosqlc-memory"
-version = "0.1.0"
-source = { editable = "packages/memory" }
-dependencies = [
-    { name = "pynosqlc-core" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "pynosqlc-core", editable = "packages/core" }]
-
-[[package]]
-name = "pynosqlc-mongodb"
-version = "0.1.0"
-source = { editable = "packages/mongodb" }
-dependencies = [
-    { name = "pymongo" },
-    { name = "pynosqlc-core" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "pymongo", specifier = ">=4.6" },
-    { name = "pynosqlc-core", editable = "packages/core" },
-]
-
-[[package]]
-name = "pynosqlc-redis"
-version = "0.1.0"
-source = { editable = "packages/redis" }
-dependencies = [
-    { name = "pynosqlc-core" },
-    { name = "pynosqlc-memory" },
-    { name = "redis" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "pynosqlc-core", editable = "packages/core" },
-    { name = "pynosqlc-memory", editable = "packages/memory" },
-    { name = "redis", specifier = ">=5.0" },
 ]
 
 [[package]]

@@ -1,15 +1,18 @@
 [project]
-name = "pynosqlc-core"
-version = "0.1.0"
+name = "alt-python-pynosqlc-core"
+version = "1.0.0"
 description = "Core abstraction hierarchy for pynosqlc — Driver, DriverManager, Client, Collection, Cursor, Filter, FieldCondition, UnsupportedOperationError, compliance suite"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
-authors = [{name = "pynosqlc Contributors"}]
+authors = [
+    {name = "Craig Parravicini"},
+    {name = "Claude (Anthropic)"},
+]
 license = {text = "MIT"}
 keywords = ["nosql", "database", "async", "driver"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 5 - Production/Stable",
     "Framework :: AsyncIO",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",

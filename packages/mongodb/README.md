@@ -5,7 +5,7 @@ MongoDB driver for [pynosqlc](https://github.com/alt-python/pynosqlc) — connec
 ## Install
 
 ```
-pip install pynosqlc-mongodb
+pip install alt-python-pynosqlc-mongodb
 ```
 
 ## Requirements

@@ -5,7 +5,7 @@ Azure Cosmos DB driver for [pynosqlc](https://github.com/alt-python/pynosqlc) â€
 ## Install
 
 ```
-pip install pynosqlc-cosmosdb
+pip install alt-python-pynosqlc-cosmosdb
 ```
 
 ## Requirements

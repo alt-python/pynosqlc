@@ -290,7 +290,7 @@ run_compliance(_factory, skip_find=True)
 ### Directory layout
 
 ```
-pynosqlc-mydb/
+alt-python-pynosqlc-mydb/
 ├── pyproject.toml
 └── pynosqlc/               # NO __init__.py here — namespace package
     └── mydb/               # __init__.py goes here (inner subpackage)
@@ -311,11 +311,11 @@ pynosqlc-mydb/
 
 ```toml
 [project]
-name = "pynosqlc-mydb"          # hyphen-separated, PyPI style
-version = "0.1.0"
-requires-python = ">=3.11"
+name = "alt-python-pynosqlc-mydb"   # scope with your org prefix, PyPI style
+version = "1.0.0"
+requires-python = ">=3.12"
 dependencies = [
-    "pynosqlc-core>=0.1.0",
+    "alt-python-pynosqlc-core>=1.0.0",
     "my-backend-client>=1.0",   # your backend's async client library
 ]
 

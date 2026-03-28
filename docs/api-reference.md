@@ -685,11 +685,13 @@ The subprotocol and connection-details format vary by driver.
 
 | URL | Package | Backend |
 |-----|---------|---------|
-| `pynosqlc:memory:` | `pynosqlc-memory` | In-memory (testing / CI) — zero dependencies |
-| `pynosqlc:mongodb://<host>:<port>/<db>` | `pynosqlc-mongodb` | MongoDB (motor async driver) |
-| `pynosqlc:dynamodb:<region>` | `pynosqlc-dynamodb` | AWS DynamoDB (aioboto3) |
-| `pynosqlc:cosmosdb:local` | `pynosqlc-cosmosdb` | Azure Cosmos DB (Emulator) |
-| `pynosqlc:cosmosdb:<https-endpoint>` | `pynosqlc-cosmosdb` | Azure Cosmos DB (cloud) |
+| `pynosqlc:memory:` | `alt-python-pynosqlc-memory` | In-memory (testing / CI) — zero dependencies |
+| `pynosqlc:mongodb://<host>:<port>/<db>` | `alt-python-pynosqlc-mongodb` | MongoDB (pymongo AsyncMongoClient) |
+| `pynosqlc:dynamodb:<region>` | `alt-python-pynosqlc-dynamodb` | AWS DynamoDB (aioboto3) |
+| `pynosqlc:cosmosdb:local` | `alt-python-pynosqlc-cosmosdb` | Azure Cosmos DB (Emulator) |
+| `pynosqlc:cosmosdb:<https-endpoint>` | `alt-python-pynosqlc-cosmosdb` | Azure Cosmos DB (cloud) |
+| `pynosqlc:redis://<host>:<port>` | `alt-python-pynosqlc-redis` | Redis 7 (redis-py async) |
+| `pynosqlc:cassandra:<host>:<port>/<keyspace>` | `alt-python-pynosqlc-cassandra` | Cassandra 4 (cassandra-driver) |
 
 **Memory driver** — no configuration beyond the URL:
 
@@ -721,6 +723,32 @@ client = await DriverManager.get_client(
     properties={'db_id': 'mydb'},
 )
 ```
+
+**Redis driver** — host and port follow the `redis://` scheme:
+
+```python
+import pynosqlc.redis
+client = await DriverManager.get_client('pynosqlc:redis://localhost:6379')
+```
+
+Filters are evaluated in-process after a full collection scan. See
+[`packages/redis/README.md`](../packages/redis/README.md) for storage layout
+and TLS configuration details.
+
+**Cassandra driver** — host, port, and keyspace are colon-separated:
+
+```python
+import pynosqlc.cassandra
+client = await DriverManager.get_client(
+    'pynosqlc:cassandra:localhost:9042/my_keyspace'
+)
+```
+
+The keyspace is created automatically with `SimpleStrategy` replication factor 1
+if it does not exist. Tables are created per collection on first use. Filters are
+evaluated in-process after a full table scan. See
+[`packages/cassandra/README.md`](../packages/cassandra/README.md) for schema
+details.
 
 See [`docs/driver-guide.md`](driver-guide.md) for authentication, TLS, and
 driver-specific `properties` keys.
