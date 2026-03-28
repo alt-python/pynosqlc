@@ -29,4 +29,4 @@ jobs:
       - name: Publish ${{ matrix.package }}
         env:
           UV_PUBLISH_TOKEN: ${{ secrets.UV_PUBLISH_TOKEN }}
-        run: uv publish packages/${{ matrix.package }}/dist/* --skip-existing
+        run: uv publish packages/${{ matrix.package }}/dist/* --check-url https://pypi.org/simple
