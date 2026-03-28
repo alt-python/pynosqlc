@@ -9,6 +9,7 @@ dependencies = [
     "pynosqlc-mongodb",
     "pynosqlc-dynamodb",
     "pynosqlc-cosmosdb",
+    "pynosqlc-redis",
 ]
 
 [tool.uv.workspace]
@@ -18,6 +19,7 @@ members = [
     "packages/mongodb",
     "packages/dynamodb",
     "packages/cosmosdb",
+    "packages/redis",
 ]
 
 [tool.uv.sources]
@@ -26,6 +28,7 @@ pynosqlc-memory = { workspace = true }
 pynosqlc-mongodb = { workspace = true }
 pynosqlc-dynamodb = { workspace = true }
 pynosqlc-cosmosdb = { workspace = true }
+pynosqlc-redis = { workspace = true }
 
 [dependency-groups]
 dev = [
