@@ -83,6 +83,6 @@ Filters are evaluated **in-process** after a full table scan. There is no CQL tr
 ## Notes
 
 - cassandra-driver uses a synchronous API; all blocking calls run via `asyncio.run_in_executor`.
-- `AsyncioConnection` is used as the connection class so that cassandra-driver integrates with the running asyncio event loop.
+- The default cassandra-driver reactor (thread-based) is used rather than `AsyncioConnection`, since `AsyncioConnection` cannot hook into the asyncio event loop from a thread-pool executor thread.
 - The keyspace is created automatically with `SimpleStrategy` replication factor 1 on first connect.
 - Tables are created automatically on first use of each collection.

@@ -8,9 +8,10 @@ cassandra-driver uses a synchronous API; all blocking calls are executed
 via asyncio.get_event_loop().run_in_executor(None, ...) so they don't
 block the event loop.
 
-AsyncioConnection is used as the connection class so that the
-cassandra-driver internal reactor integrates with the running asyncio
-event loop instead of spawning its own thread.
+The default LibevConnection / ThreadedRequestExecutor reactor is used
+(not AsyncioConnection) because AsyncioConnection cannot hook into the
+running event loop when invoked from run_in_executor's thread-pool thread.
+The standard reactor works correctly from any thread.
 """
 
 from __future__ import annotations
@@ -51,7 +52,6 @@ class CassandraDriver(Driver):
         (used by compliance tests to skip).
         """
         from cassandra.cluster import Cluster
-        from cassandra.io.asyncioreactor import AsyncioConnection
         from cassandra.query import dict_factory
 
         # Parse: strip prefix → "host:port/keyspace"
@@ -73,7 +73,6 @@ class CassandraDriver(Driver):
         cluster = Cluster(
             contact_points=[host],
             port=port,
-            connection_class=AsyncioConnection,
         )
         session = await loop.run_in_executor(None, lambda: cluster.connect())
         await loop.run_in_executor(
