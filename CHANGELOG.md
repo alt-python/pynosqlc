@@ -12,17 +12,6 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ---
 
-## [1.0.2] — 2026-03-28
-
-### Fixed
-
-- Publish workflow: `uv publish <dir>` does not expand a bare directory — it must be a
-  glob or explicit file paths. `uv publish packages/<pkg>/dist` matched no files,
-  producing "No files found to publish" in CI. Fixed by changing the publish step to
-  `uv publish packages/${{ matrix.package }}/dist/*`.
-
-[1.0.2]: https://github.com/alt-python/pynosqlc/compare/v1.0.1...v1.0.2
-
 ---
 
 ## [1.0.1] — 2026-03-28
