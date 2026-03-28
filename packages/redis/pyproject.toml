@@ -26,6 +26,9 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
+[project.urls]
+Homepage = "https://github.com/alt-python/pynosqlc"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
