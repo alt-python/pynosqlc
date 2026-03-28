@@ -35,12 +35,12 @@ async def _factory():
 
     try:
         client = await DriverManager.get_client(REDIS_URL)
+        # Flush the entire DB — Redis has no per-collection teardown equivalent;
+        # flushing gives every test class a guaranteed clean slate.
+        # flushdb() is the first real network call — connection errors surface here.
+        await client._r.flushdb()
     except Exception as e:
         pytest.skip(f"Redis not available: {e}")
-
-    # Flush the entire DB — Redis has no per-collection teardown equivalent;
-    # flushing gives every test class a guaranteed clean slate.
-    await client._r.flushdb()
 
     return client
 
