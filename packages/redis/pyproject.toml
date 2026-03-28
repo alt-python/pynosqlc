@@ -28,6 +28,9 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://github.com/alt-python/pynosqlc"
+Repository = "https://github.com/alt-python/pynosqlc"
+Documentation = "https://github.com/alt-python/pynosqlc#getting-started"
+"Bug Tracker" = "https://github.com/alt-python/pynosqlc/issues"
 
 [build-system]
 requires = ["hatchling"]
