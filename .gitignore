@@ -27,3 +27,4 @@ coverage/
 .cache/
 tmp/
 
+/.bg-shell/
