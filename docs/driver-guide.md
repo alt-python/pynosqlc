@@ -358,6 +358,13 @@ before writing your own:
 | `packages/memory/pynosqlc/memory/memory_collection.py` | All six hooks, UUID4 `_insert`, `Cursor` return, `self._name` usage |
 | `packages/memory/pynosqlc/memory/memory_filter_evaluator.py` | Pure-Python filter AST evaluation |
 | `packages/memory/tests/test_compliance.py` | `DriverManager.clear()` + re-register pattern |
+| `packages/redis/pynosqlc/redis/redis_collection.py` | Full-scan + `MemoryFilterEvaluator` pattern; pipeline batch GET; namespaced key scheme |
+| `packages/cassandra/pynosqlc/cassandra/cassandra_collection.py` | `run_in_executor` bridging for blocking driver; lazy table creation; full-scan + `MemoryFilterEvaluator` |
 
-For a richer example with real I/O and connection management, see
-`packages/mongodb/` (MongoDB) or `packages/dynamodb/` (DynamoDB).
+Six drivers ship with pynosqlc. `memory`, `mongodb`, `dynamodb`, and `cosmosdb`
+use server-side filtering (or no filtering for the in-memory case). `redis` and
+`cassandra` use full-scan + `MemoryFilterEvaluator` for client-side filtering —
+the right pattern when the backend has no query language of its own. For real I/O
+and connection management examples, see `packages/mongodb/` (MongoDB),
+`packages/dynamodb/` (DynamoDB), `packages/redis/` (Redis), or
+`packages/cassandra/` (Cassandra).
