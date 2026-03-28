@@ -12,32 +12,6 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ---
 
----
-
-## [1.0.1] — 2026-03-28
-
-### Fixed
-
-- Publish workflow: fixed dist output path — `uv build --directory packages/<pkg>` resolved
-  `--out-dir` relative to the changed directory, doubling the path to
-  `packages/<pkg>/packages/<pkg>/dist/`. Switched to
-  `uv build --package alt-python-pynosqlc-<pkg> --out-dir packages/<pkg>/dist` from the
-  workspace root so `uv publish` finds the artifacts correctly.
-
-### Changed
-
-- Publish workflow: switched from OIDC trusted publishing to token auth via
-  `UV_PUBLISH_TOKEN` secret (`secrets.UV_PUBLISH_TOKEN`). Removed `id-token: write`
-  permission.
-- Publish workflow: added `redis` and `cassandra` to the publish matrix (were missing
-  from the initial workflow).
-- All packages: added `[project.urls]` block — `Homepage`, `Repository`, `Documentation`
-  (GitHub README `#getting-started` anchor), and `Bug Tracker` (GitHub Issues).
-
-[1.0.1]: https://github.com/alt-python/pynosqlc/compare/v1.0.0...v1.0.1
-
----
-
 ## [1.0.0] — 2026-03-28
 
 Initial public release of the `alt-python-pynosqlc` package family.
