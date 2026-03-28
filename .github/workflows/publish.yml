@@ -25,8 +25,8 @@ jobs:
         with:
           python-version: "3.12"
       - name: Build ${{ matrix.package }}
-        run: uv build --directory packages/${{ matrix.package }}
+        run: uv build --package alt-python-pynosqlc-${{ matrix.package }} --out-dir packages/${{ matrix.package }}/dist
       - name: Publish ${{ matrix.package }}
         env:
           UV_PUBLISH_TOKEN: ${{ secrets.UV_PUBLISH_TOKEN }}
-        run: uv publish --directory packages/${{ matrix.package }}
+        run: uv publish packages/${{ matrix.package }}/dist
