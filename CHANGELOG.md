@@ -12,6 +12,18 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ---
 
+## [1.0.2] — 2026-03-28
+
+### Fixed
+
+- Publish workflow: replaced `--skip-existing` (unsupported by uv) with
+  `--check-url https://pypi.org/simple` to skip already-uploaded distributions.
+- Publish: clean version bump to avoid PyPI 500 errors from partial prior uploads.
+
+[1.0.2]: https://github.com/alt-python/pynosqlc/compare/v1.0.1...v1.0.2
+
+---
+
 ## [1.0.1] — 2026-03-28
 
 ### Fixed
