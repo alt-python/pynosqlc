@@ -12,6 +12,22 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ---
 
+## [1.0.2] — 2026-03-28
+
+### Fixed
+
+- Publish workflow: `packages/*/dist/` directories are created at build time within the
+  CI job and are not committed (correctly excluded by `.gitignore`). Running
+  `uv publish packages/core/dist` locally without a prior `uv build` step produces
+  "No files found to publish". No workflow change required — build and publish run in
+  the same job. Document the required local sequence:
+  `uv build --package alt-python-pynosqlc-<pkg> --out-dir packages/<pkg>/dist`
+  then `uv publish packages/<pkg>/dist`.
+
+[1.0.2]: https://github.com/alt-python/pynosqlc/compare/v1.0.1...v1.0.2
+
+---
+
 ## [1.0.1] — 2026-03-28
 
 ### Fixed
