@@ -1,6 +1,6 @@
 [project]
 name = "alt-python-pynosqlc-memory"
-version = "1.0.3"
+version = "1.0.4"
 description = "In-memory driver for pynosqlc — zero-dependency dict-backed storage for testing"
 readme = "README.md"
 requires-python = ">=3.12"

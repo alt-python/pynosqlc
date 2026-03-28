@@ -1,6 +1,6 @@
 [project]
 name = "alt-python-pynosqlc-dynamodb"
-version = "1.0.3"
+version = "1.0.4"
 description = "DynamoDB driver for pynosqlc"
 readme = "README.md"
 requires-python = ">=3.12"
